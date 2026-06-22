@@ -1,0 +1,75 @@
+import 'dart:async';
+import 'dart:io';
+import 'dart:math';
+import 'dart:typed_data';
+
+import 'package:crypto/crypto.dart';
+import 'package:drift/drift.dart' show Value;
+import 'package:fin_track/application/receipts/receipt_service.dart';
+import 'package:fin_track/application/receipts/receipt_processing_service.dart';
+import 'package:fin_track/bootstrap/fin_track_dependencies.dart';
+import 'package:fin_track/application/ocr/data_extractor_service.dart';
+import 'package:fin_track/application/receipts/semantic/receipt_semantic_indexer.dart';
+import 'package:fin_track/domain/entities/category.dart';
+import 'package:fin_track/domain/entities/cloud_provider.dart';
+import 'package:fin_track/domain/entities/configuration.dart';
+import 'package:fin_track/domain/entities/receipt.dart';
+import 'package:fin_track/domain/entities/fiscal_document_data.dart';
+import 'package:fin_track/domain/entities/company_data.dart';
+import 'package:fin_track/domain/entities/extracted_data.dart';
+import 'package:fin_track/domain/exceptions/storage_limit_exception.dart';
+import 'package:fin_track/domain/infrastructure/i_visual_code_service.dart';
+import 'package:fin_track/domain/infrastructure/i_cnpj_lookup_service.dart';
+import 'package:fin_track/domain/infrastructure/i_fiscal_document_lookup_service.dart';
+import 'package:fin_track/domain/entities/embedding.dart';
+import 'package:fin_track/domain/infrastructure/i_document_scanner_service.dart';
+import 'package:fin_track/domain/infrastructure/i_embedding_diagnostics.dart';
+import 'package:fin_track/domain/infrastructure/i_embedding_service.dart';
+import 'package:fin_track/domain/infrastructure/i_error_reporter.dart';
+import 'package:fin_track/domain/infrastructure/i_image_preprocessor_service.dart';
+import 'package:fin_track/domain/infrastructure/i_image_service.dart';
+import 'package:fin_track/domain/infrastructure/i_ocr_service.dart';
+import 'package:fin_track/domain/infrastructure/i_semantic_index_scheduler.dart';
+import 'package:fin_track/domain/services/i_configuration_service.dart';
+import 'package:fin_track/domain/value_objects/receipt_filter.dart';
+import 'package:fin_track/domain/value_objects/receipt_payment_method.dart';
+import 'package:fin_track/domain/value_objects/ocr_result.dart';
+import 'package:fin_track/domain/value_objects/composite_embedding_score.dart';
+import 'package:fin_track/domain/value_objects/embedding_vector.dart';
+import 'package:fin_track/infrastructure/database/app_database.dart';
+import 'package:fin_track/infrastructure/database/category_repository.dart';
+import 'package:fin_track/infrastructure/database/repositories/receipt_repository.dart';
+import 'package:fin_track/infrastructure/company/cached_cnpj_lookup_service.dart';
+import 'package:fin_track/infrastructure/fiscal/cached_fiscal_document_service.dart';
+import 'package:fin_track/infrastructure/image/image_service.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_test/flutter_test.dart';
+
+part 'receipt_service_extraction_basics_part.dart';
+part 'receipt_service_filters_updates_part.dart';
+part 'receipt_service_fiscal_cnpj_category_part.dart';
+part 'receipt_service_fiscal_data_part.dart';
+part 'receipt_service_cnpj_category_learning_part.dart';
+part 'receipt_service_category_suggestion_part.dart';
+part 'receipt_service_image_service_part.dart';
+part 'receipt_service_pipeline_files_part.dart';
+part 'receipt_service_pipeline_processing_part.dart';
+part 'receipt_service_file_operations_part.dart';
+part 'receipt_service_confirmation_sharing_part.dart';
+part 'receipt_service_semantic_search_part.dart';
+part 'receipt_service_semantic_background_part.dart';
+part 'receipt_service_basic_helpers_part.dart';
+part 'receipt_service_ocr_preprocessor_helpers_part.dart';
+part 'receipt_service_image_config_helpers_part.dart';
+
+void main() {
+  TestWidgetsFlutterBinding.ensureInitialized();
+
+  registerReceiptExtractionBasicsTests();
+  registerReceiptSemanticSearchTests();
+  registerReceiptSemanticBackgroundTests();
+  registerReceiptFiltersUpdatesTests();
+  registerReceiptFiscalCnpjCategoryTests();
+  registerReceiptImageServiceTests();
+  registerReceiptPipelineFilesTests();
+}

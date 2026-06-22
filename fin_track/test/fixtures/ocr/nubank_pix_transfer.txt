@@ -1,0 +1,22 @@
+Receipt de
+transferência
+25 ABR 2026 -10:46:32
+Valor
+Tipo de transferência
+ID da transação
+Destino
+Nome
+CPF
+Instituiçáo
+Origem
+Nome
+Instituiçăo
+CPF
+R$ 400,00
+E18236120202604251346s0628211132
+MIRIAN LỤCIA CONRADO
+CAIXA ECONOMICA FEDERAL
+CNPJ 18.236.120/0001-58
+Pix
+Nu Pagamentos S.A. - Instituição de Pagamento
+Jeferson Leandro de Oliveira

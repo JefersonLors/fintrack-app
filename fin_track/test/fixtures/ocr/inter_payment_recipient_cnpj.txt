@@ -1,0 +1,22 @@
+inter
+Pagamento efetuado
+R$ 102,10
+Sobre a transação
+Data da transação
+Segunda-feira, 09/02/2026
+Quem recebeu
+Nome
+BANCO INTER SA
+CPF/CNPJ
+00.416.968/0001-01
+Instituição
+Banco Inter
+Quem pagou
+Nome
+JEFERSON LEANDRO DE OLIVEIRA DOS REIS SANTANA
+Agência
+00019
+Número da account
+13910653-7
+Instituição
+Banco Inter

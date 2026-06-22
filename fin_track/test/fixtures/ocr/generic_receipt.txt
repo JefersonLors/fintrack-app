@@ -1,0 +1,7 @@
+RECIBO
+Recebido de Cliente Exemplo
+Referente a servicos prestados
+Data 30/04/2026
+Valor R$ 250,00
+Pago a Prestador Central
+Assinatura

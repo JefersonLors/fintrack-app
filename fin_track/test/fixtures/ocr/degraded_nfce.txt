@@ -1,0 +1,10 @@
+NFC-e
+Emitente
+PADARIA SAO JOAO LTDA
+CNPJ 11.222.333/0001-44
+Chave de acesso 2926 0500 0000 0000 0000
+Itens
+Pao frances
+Cafe
+Valor total R $ 32,40
+Emissao 04/05/2026
